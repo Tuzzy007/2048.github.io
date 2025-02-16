@@ -311,7 +311,6 @@
         newBox: function () {
             var _this = this;
 
-
             var box = function (obj) {
                 var num = Math.random() > 0.9 ? 4 : 2;
                 this.value = num;
@@ -323,9 +322,14 @@
                     domBox.className = 'row' + obj.position[0] + ' ' + 'cell' + obj.position[1] + ' ' + 'num' + num;
                     var root = document.getElementById('stage');
                     root.appendChild(domBox);
-                    return  domBox;
+                    return domBox;
                 }();
                 obj.boxObj = this;
+            
+                if (this.value === 2048) {
+                    alert("Nyertél!");
+                    gameObj.points.status = 0;
+                }
             }
             var emptyList = this.empty();
             if (emptyList.length) {
@@ -334,6 +338,7 @@
                 return true;
             }
         },
+
         isEnd:function(){
             var emptyList = this.empty();
             if (!emptyList.length) {
